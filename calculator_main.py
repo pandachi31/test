@@ -124,6 +124,7 @@ class Main(QDialog):
         button_dot.clicked.connect(lambda state, num = ".": self.number_button_clicked(num))
         layout_number.addWidget(button_dot, 5, 2)
 
+        #역수기능은 추후 추가
         button_double_zero = QPushButton("+/-")
         button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
         layout_number.addWidget(button_double_zero, 5, 0)

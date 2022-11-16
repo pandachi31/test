@@ -29,6 +29,9 @@ class Main(QDialog):
         button_division = QPushButton("/")
 
         button_a = QPushButton("%")
+        button_b = QPushButton("1/x")
+        button_c = QPushButton("제곱")
+        button_d = QPushButton("제곱근")
 
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
         button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
@@ -42,9 +45,15 @@ class Main(QDialog):
         layout_number.addWidget(button_product, 2, 3)
         layout_number.addWidget(button_division, 1, 3)
 
+        layout_number.addWidget(button_a, 0, 0)
+        layout_number.addWidget(button_b, 1, 0)
+        layout_number.addWidget(button_c, 1, 1)
+        layout_number.addWidget(button_d, 1, 2)
+
         ### =, clear, backspace 버튼 생성
         button_equal = QPushButton("=")
         button_clear = QPushButton("C")
+        button_clear2 = QPushButton("CE")
         button_backspace = QPushButton("Backspace")
 
         ### =, clear, backspace 버튼 클릭 시 시그널 설정
@@ -55,6 +64,7 @@ class Main(QDialog):
         ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
         layout_number.addWidget(button_clear, 0, 2)
         layout_number.addWidget(button_backspace, 0, 3)
+        layout_number.addWidget(button_clear2, 0, 1)
         layout_number.addWidget(button_equal, 5, 3)
 
         ### 숫자 버튼 생성하고, layout_number 레이아웃에 추가

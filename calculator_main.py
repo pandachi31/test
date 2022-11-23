@@ -33,11 +33,18 @@ class Main(QDialog):
         button_c = QPushButton("제곱")
         button_d = QPushButton("제곱근")
 
+
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
-        button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
-        button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
-        button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
-        button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
+        button_plus.clicked.connect(self.button_plus_clicked)
+        button_minus.clicked.connect(self.button_minus_clicked)
+        button_product.clicked.connect(self.button_product_clicked)
+        button_division.clicked.connect(self.button_division_clicked)
+
+
+        button_a.clicked.connect(self.button_a_clicked)
+        button_b.clicked.connect(self.button_b_clicked)
+        button_c.clicked.connect(self.button_c_clicked)
+        button_d.clicked.connect(self.button_d_clicked)
 
         ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
         layout_number.addWidget(button_plus, 4, 3)
@@ -59,6 +66,7 @@ class Main(QDialog):
         ### =, clear, backspace 버튼 클릭 시 시그널 설정
         button_equal.clicked.connect(self.button_equal_clicked)
         button_clear.clicked.connect(self.button_clear_clicked)
+        button_clear2.clicked.connect(self.button_clear_clicked)
         button_backspace.clicked.connect(self.button_backspace_clicked)
 
         ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
@@ -125,9 +133,9 @@ class Main(QDialog):
         layout_number.addWidget(button_dot, 5, 2)
 
         #역수기능은 추후 추가
-        button_double_zero = QPushButton("+/-")
-        button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
-        layout_number.addWidget(button_double_zero, 5, 0)
+        button_z = QPushButton("+/-")
+        button_z.clicked.connect(self.button_z_clicked)
+        layout_number.addWidget(button_z, 5, 0)
 
         ### 각 레이아웃을 main_layout 레이아웃에 추가
         main_layout.addLayout(layout_equation_solution)
@@ -157,12 +165,40 @@ class Main(QDialog):
 
     def button_clear_clicked(self):
         self.equation.setText("")
-        self.solution.setText("")
+        self.equation.setText("")
 
     def button_backspace_clicked(self):
         equation = self.equation.text()
         equation = equation[:-1]
         self.equation.setText(equation)
+
+    def button_plus_clicked(self):   # 더하기 구하는 식
+        equation = self.equation.text()
+        equation += '+'
+        self.equation.setText(equation)
+        
+    def button_minus_clicked(self):   # 빼기 구하는 식
+        equation = self.equation.text()
+        equation += '-'
+        self.equation.setText(equation)
+    
+    def button_product_clicked(self):   # 곱하기 구하는 식
+        equation = self.equation.text()
+        equation += '*'
+        self.equation.setText(equation)
+    
+    def button_division_clicked(self):   # 나누기 구하는 식
+        equation = self.equation.text()
+        equation += '/'
+        self.equation.setText(equation)
+
+
+
+    
+
+
+
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

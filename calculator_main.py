@@ -1,4 +1,7 @@
+import math
+
 import sys
+
 from PyQt5.QtWidgets import *
 #커밋 실험
 class Main(QDialog):
@@ -194,7 +197,32 @@ class Main(QDialog):
 
 
 
+    def button_a_clicked(self):   # 나머지 구하는 식
+        equation = self.equation.text()
+        equation += '%'
+        self.equation.setText(equation)
     
+    def button_b_clicked(self):   # 역수를 구하시오
+        equation = self.equation.text()
+        equation = 1 / int(equation)
+        self.equation.setText(str(equation))
+    
+    def button_c_clicked(self):    # 제곱을 구하는 식
+        equation = self.equation.text()
+        equation += '**'
+        self.equation.setText(equation)
+    
+    def button_d_clicked(self):    # 제곱근을 구하는 식
+        equation = self.equation.text()
+        equation = math.sqrt(int(equation))
+        self.equation.setText(str(equation))
+
+    def button_z_clicked(self):     #음수 부호 붙이기
+        equation = self.equation.text()
+        equation = -1 * int(equation)
+        self.equation.setText(str(equation))
+
+        
 
 
 

@@ -209,12 +209,12 @@ class Main(QDialog):
     
     def button_c_clicked(self):    # 제곱을 구하는 식
         equation = self.equation.text()
-        equation += '**'
-        self.equation.setText(equation)
+        equation = math.pow(float(equation), 2)
+        self.equation.setText(str(equation))
     
     def button_d_clicked(self):    # 제곱근을 구하는 식
         equation = self.equation.text()
-        equation = math.sqrt(int(equation))
+        equation = math.sqrt(float(equation))
         self.equation.setText(str(equation))
 
     def button_z_clicked(self):     #음수 부호 붙이기

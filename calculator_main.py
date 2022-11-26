@@ -3,6 +3,8 @@ import math
 import sys
 
 from PyQt5.QtWidgets import *
+
+
 #커밋 실험
 class Main(QDialog):
     def __init__(self):
@@ -17,6 +19,10 @@ class Main(QDialog):
         layout_clear_equal = QHBoxLayout()
         layout_number = QGridLayout()
         layout_equation_solution = QFormLayout()
+
+        self.operator = ""
+        self.first_number = 0
+        self.second_number = 0
 
         ### 수식 입력과 답 출력을 위한 LineEdit 위젯 생성
         self.equation = QLineEdit("")
@@ -151,6 +157,9 @@ class Main(QDialog):
     #################
     ### functions ###
     #################
+
+    
+
     def number_button_clicked(self, num):
         equation = self.equation.text()
         equation += str(num)
@@ -160,11 +169,8 @@ class Main(QDialog):
         equation = self.equation.text()
         equation += operation
         self.equation.setText(equation)
-
-    def button_equal_clicked(self):
-        equation = self.equation.text()
-        solution = eval(equation)
-        self.equation.setText(str(solution))
+    
+    
 
     def button_clear_clicked(self):
         self.equation.setText("")
@@ -175,36 +181,74 @@ class Main(QDialog):
         equation = equation[:-1]
         self.equation.setText(equation)
 
+
+
+    def button_equal_clicked(self):
+        equation = self.equation.text()
+        self.second_number = float(equation)
+
+        if self.operator == '+':
+            equation = float(self.first_number) + float(self.second_number)
+            self.equation.setText(str(equation))
+
+        elif self.operator == '-':
+            equation = float(self.first_number) - float(self.second_number)
+            self.equation.setText(str(equation))
+
+        elif self.operator == '*':
+            equation = float(self.first_number) * float(self.second_number)
+            self.equation.setText(str(equation))    
+        
+        elif self.operator == '/':
+            equation = float(self.first_number) / float(self.second_number)
+            self.equation.setText(str(equation))
+        
+        elif self.operator == '%':
+            equation = float(self.first_number) % float(self.second_number)
+            self.equation.setText(str(equation))
+        #equation = self.equation.text()
+        #solution = eval(equation)
+        #self.equation.setText(str(solution))
+
+
+
     def button_plus_clicked(self):   # 더하기 구하는 식
         equation = self.equation.text()
-        equation += '+'
-        self.equation.setText(equation)
+        self.first_number = float(equation)
+        self.operator = '+'
+        self.equation.setText("")
+        
+        
         
     def button_minus_clicked(self):   # 빼기 구하는 식
         equation = self.equation.text()
-        equation += '-'
-        self.equation.setText(equation)
+        self.first_number = float(equation)
+        self.operator = '-'
+        self.equation.setText("")
     
     def button_product_clicked(self):   # 곱하기 구하는 식
         equation = self.equation.text()
-        equation += '*'
-        self.equation.setText(equation)
+        self.first_number = float(equation)
+        self.operator = '*'
+        self.equation.setText("")
     
     def button_division_clicked(self):   # 나누기 구하는 식
         equation = self.equation.text()
-        equation += '/'
-        self.equation.setText(equation)
+        self.first_number = float(equation)
+        self.operator = '/'
+        self.equation.setText("")
 
 
 
     def button_a_clicked(self):   # 나머지 구하는 식
         equation = self.equation.text()
-        equation += '%'
-        self.equation.setText(equation)
+        self.first_number = float(equation)
+        self.operator = '%'
+        self.equation.setText("")
     
     def button_b_clicked(self):   # 역수를 구하시오
         equation = self.equation.text()
-        equation = 1 / int(equation)
+        equation = 1 / float(equation)
         self.equation.setText(str(equation))
     
     def button_c_clicked(self):    # 제곱을 구하는 식
@@ -219,7 +263,7 @@ class Main(QDialog):
 
     def button_z_clicked(self):     #음수 부호 붙이기
         equation = self.equation.text()
-        equation = -1 * int(equation)
+        equation = -1 * float(equation)
         self.equation.setText(str(equation))
 
         
